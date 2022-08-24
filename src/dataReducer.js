@@ -1,17 +1,25 @@
 import mockData from './mockData'
 
+let newData = mockData[0].boards
+
 export const initialState = {
-    mockData
+    newData
 }
 
 const dataReducer = (initialState, action) => {
+    const { type, payload } = action
+    switch (type) {
+        case 'SAVE_DATA': {
+            console.log("SAVE_DATA", payload);
 
-    switch (action.type) {
+            return {
+                ...initialState,
+                newData: payload
 
-        case 'getcomments': {
-            let boards = initialState[0]
-            return boards.find(board => boards.indexOf(board).toString() === action.index)
+            }
+
         }
+
 
         // case 'changed': {
         //   return tasks.map(t => {
@@ -30,6 +38,7 @@ const dataReducer = (initialState, action) => {
         default: {
             throw Error('Unknown action: ' + action.type);
         }
+
     }
 
 

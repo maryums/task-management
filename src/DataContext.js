@@ -1,26 +1,28 @@
 import { createContext, useReducer, useContext } from "react";
-
 import dataReducer, { initialState } from "./dataReducer";
+import produce from 'immer'
 
 const DataContext = createContext(initialState)
-
-
 
 export const DataProvider = ({ children }) => {
 
     const [state, dispatch] = useReducer(dataReducer, initialState);
 
-    function handleGetBoard(index) {
+    function saveFormData(newData, boardIndex) {
+        let data = (state.newData)
+        const nextState = produce(data, draftState => {
+            draftState[boardIndex].columns[0].tasks.push(newData)
+        })
         dispatch({
-            type: 'getcomments',
-            index: index
+            type: 'SAVE_DATA',
+            payload: nextState
+
         });
     }
 
     const value = {
-        boards: state.mockData[0].boards,
-        handleGetBoard
-
+        boards: state,
+        saveFormData
     }
 
     return (

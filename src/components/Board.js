@@ -3,29 +3,33 @@ import { useParams, useNavigate, Link } from "react-router-dom";
 import useData from '../DataContext'
 import { useLocation } from "react-router-dom"
 import { nanoid } from 'nanoid'
-import EachTask from './EachTask';
+import EachTask from './EachTask'
+import { AddNewTask } from './AddNewTask'
 
 const Board = () => {
-    let individualTask;
-    const [showModal, setshowModal] = useState(false)
+
+    const [showEachTask, setShowEachTask] = useState(false)
+    const [showAddNewTask, setShowAddNewTask] = useState(false)
     const [currTask, setCurrTask] = useState(null)
 
     const { boards } = useData()
+
     let { boardIndex } = useParams();
 
-    let currentBoard = (boards[boardIndex])
-    const boardColumns = currentBoard.columns
+    let boardz = boards.newData
+
+
+    let currentBoard = (boardz[boardIndex])
 
     const launchModel = (task) => {
         setCurrTask(task)
-        setshowModal(prevState => !prevState)
-
+        setShowEachTask(prevState => !prevState)
     }
 
-    const renderBoardInfo = boardColumns.map(item => {
+
+    const renderBoard = (currentBoard.columns).map(item => {
 
         return <div
-
             key={nanoid()}
             className={item.name}
         >
@@ -41,7 +45,10 @@ const Board = () => {
                                 key={nanoid()}
                             >
                                 {task.title} <br />
-                                <p className='subtasks'>  {(task.subtasks).filter(each => each.isCompleted).length} of {(task.subtasks).length} subtasks completed</p>
+                                <p className='subtasks'>
+                                    {(task.subtasks).filter(each => each.isCompleted).length}
+                                    {''} of {''}
+                                    {(task.subtasks).length} subtasks completed</p>
                             </li>
                         )
                     }
@@ -58,15 +65,23 @@ const Board = () => {
     return (
         <>
             <h3>{currentBoard.name} </h3>
+
             <button
-                onClick={launchModel}> Launch Model
+                onClick={() => setShowAddNewTask(prevState => !prevState)}
+            >Add a New Task</button>
 
-            </button>
-            <div className="tasks-container">{renderBoardInfo}</div>
+            <div className="tasks-container">{renderBoard}</div>
 
-            {showModal &&
+            {showEachTask &&
                 <EachTask
-                    setshowModal={setshowModal}
+                    setShowEachTask={setShowEachTask}
+                    task={currTask}
+                />}
+
+            {showAddNewTask &&
+                <AddNewTask
+                    boardIndex={boardIndex}
+                    setShowAddNewTask={setShowAddNewTask}
                     task={currTask}
                 />}
 
@@ -75,6 +90,7 @@ const Board = () => {
 
 
     )
+
 }
 
 export default Board

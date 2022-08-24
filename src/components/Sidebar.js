@@ -1,26 +1,21 @@
 import React, { useState } from 'react'
-import { useParams, useNavigate, Link, Outlet } from "react-router-dom";
+import { Link } from "react-router-dom";
 import useData from '../DataContext'
 import { nanoid } from 'nanoid'
-import NewBoardModal from './NewBoardModal'
-
-
+import AddNewBoard from './NewBoardModal'
 
 const Sidebar = () => {
-
+    const { boards } = useData()
 
     const [showModal, setShowModal] = useState(false)
-    const { boards, handleGetBoard } = useData()
+
+    let boardz = boards.newData
 
 
-    const boardNames = boards.map(board => {
-
-        let boardIndex = boards.indexOf(board)
-
+    const boardNames = boardz.map(board => {
+        let boardIndex = boardz.indexOf(board)
         return (
-
             <li key={nanoid()}>
-
                 <Link
                     to={`/${boardIndex}`}
                     key={nanoid()}
@@ -41,13 +36,13 @@ const Sidebar = () => {
     return (
 
         <div>
-            <h3>All Boards ( {boards.length} ) </h3>
+            <h3>All Boards ( {boardz.length} ) </h3>
             <ul>
                 {boardNames}
                 <li onClick={() => setShowModal(prevState => !prevState)}>Create New Board</li>
             </ul>
 
-            {showModal && <NewBoardModal
+            {showModal && <AddNewBoard
                 setShowModal={setShowModal} />}
 
         </div>

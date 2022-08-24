@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import '../styles/newboardmodal.css'
 
-const NewBoardModal = ({ setShowModal }) => {
+const AddNewBoard = ({ setShowModal }) => {
 
     return (
         <div>
@@ -15,7 +15,7 @@ const NewBoardModal = ({ setShowModal }) => {
                     <div className='popup_info'>
 
 
-                        <h2>Add New Task</h2>
+                        <h2>Add New Board</h2>
                         <label>Title</label>
                         <input />
                         <br />
@@ -35,4 +35,4 @@ const NewBoardModal = ({ setShowModal }) => {
     )
 }
 
-export default NewBoardModal
+export default AddNewBoard

@@ -1,6 +1,7 @@
 import React from 'react'
+import { nanoid } from 'nanoid'
 
-const EachTask = ({ task, setshowModal }) => {
+const EachTask = ({ task, setShowEachTask }) => {
     console.log(task)
 
     return (
@@ -9,7 +10,7 @@ const EachTask = ({ task, setshowModal }) => {
                 <div className="modal_content">
                     <span
                         className="close"
-                        onClick={() => setshowModal(prevState => !prevState)}
+                        onClick={() => setShowEachTask(prevState => !prevState)}
                     >
                         &times;
                     </span>
@@ -24,7 +25,7 @@ const EachTask = ({ task, setshowModal }) => {
 
                         <ul>
                             {(task.subtasks).map(subtask => (
-                                <li>{subtask.title} {subtask.isCompleted && "-- its completed"}</li>
+                                <li key={nanoid()}>{subtask.title} {subtask.isCompleted && "-- its completed"}</li>
                             ))}
                         </ul>
 

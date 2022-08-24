@@ -8,7 +8,14 @@ import Home from './Home'
 
 const App = () => {
 
+  const { boards } = useData();
 
+  useEffect(() => {
+    console.log("running useEffect")
+    console.log(boards)
+
+
+  }, [boards])
 
   return (
     <div className='App'>
@@ -16,7 +23,6 @@ const App = () => {
 
         <Route path="/" element={<Home />} >
           <Route path=":boardIndex" element={<Board />} />
-
 
         </Route>
 
