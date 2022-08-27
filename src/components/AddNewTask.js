@@ -21,18 +21,36 @@ export const AddNewTask = ({ setShowAddNewTask, boardIndex }) => {
         setFormData(prevFormData => {
             return {
                 ...prevFormData,
-                [name]: type === "checkbox" ? checked : value.toLowerCase()
+                [name]: type === "checkbox" ? checked : value
             }
         })
     }
 
     const handleSubmit = () => {
-        saveFormData(formData, boardIndex)
+        let statusIndex;
+
+        if (formData.status === "Todo") {
+            statusIndex = 0
+        }
+        else if (formData.status === "Doing") {
+            statusIndex = 1
+        }
+        else {
+            statusIndex = 2
+        }
+        saveFormData(formData, boardIndex, statusIndex)
+
+        setFormData({
+            title: "",
+            description: "",
+            status: "",
+            subtasks: []
+        })
+        setShowAddNewTask(prevState => !prevState)
+
     }
 
     const { boards } = useData()
-
-
 
     return (
 
@@ -52,6 +70,7 @@ export const AddNewTask = ({ setShowAddNewTask, boardIndex }) => {
                     <input
                         type="title"
                         id="title"
+                        value={formData.title}
                         name="title"
                         placeholder="e.g. Take a coffee break"
                         onChange={handleChange}
@@ -64,6 +83,7 @@ export const AddNewTask = ({ setShowAddNewTask, boardIndex }) => {
                         cols="50"
                         id="description"
                         name="description"
+                        value={formData.description}
                         placeholder="e.g. It's always nice a take a coffee break and lorem epsum dolem blah blah blah"
                         onChange={handleChange}
                     />
@@ -74,6 +94,7 @@ export const AddNewTask = ({ setShowAddNewTask, boardIndex }) => {
                     <label htmlFor='status'>Status </label>
                     <select
                         name="status"
+                        value={formData.status}
                         id="status"
                         onChange={handleChange}
                     >

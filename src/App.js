@@ -11,9 +11,6 @@ const App = () => {
   const { boards } = useData();
 
   useEffect(() => {
-    console.log("running useEffect")
-    console.log(boards)
-
 
   }, [boards])
 

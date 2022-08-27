@@ -8,10 +8,10 @@ export const DataProvider = ({ children }) => {
 
     const [state, dispatch] = useReducer(dataReducer, initialState);
 
-    function saveFormData(newData, boardIndex) {
+    function saveFormData(newData, boardIndex, statusIndex) {
         let data = (state.newData)
         const nextState = produce(data, draftState => {
-            draftState[boardIndex].columns[0].tasks.push(newData)
+            draftState[boardIndex].columns[statusIndex].tasks.push(newData)
         })
         dispatch({
             type: 'SAVE_DATA',
