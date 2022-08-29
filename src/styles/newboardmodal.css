@@ -13,23 +13,35 @@
   .modal_content {
     background-color: white;
     margin: 15% auto; /* 15% from the top and centered */
-    width: 80%;
+    width: 50%;
     padding: 20px;
     border-radius: 5px;
     border: 2px solid black;
   }
   
   .close {
-    color: Black;
+    color: black;
     float: right;
   }
   
   .close:hover {
-    color: cyan;
     cursor: pointer;
   }
   
   .popup_info {
   text-align: center;
-    
   }
+
+
+  @media (min-width: 320px) and (max-width: 420px)  {
+  .modal_content {
+    width: 90%;
+  }
+}
+@media (min-width: 420px) and (max-width: 768px) {
+  .modal_content {
+    width: 80%;
+  }
+  
+
+}

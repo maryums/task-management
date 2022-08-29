@@ -16,15 +16,6 @@ const Home = () => {
             <div>
                 <MainBoard />
 
-                {/* <Routes>
-
-                    <Route path=":boardIndex" element={
-                        <Board />
-                    }
-                    />
-
-                </Routes> */}
-
             </div>
 
 

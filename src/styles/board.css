@@ -1,0 +1,96 @@
+
+.board h3 {
+    font-size: 20px;
+    font-weight: 800;
+    margin-bottom: 20px;
+}
+
+.board-top {
+    padding: 10px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+
+}
+
+.board-top button {
+    background-color: #635FC7;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 15px;
+}
+
+.tasks-container {
+    height: 100vh;
+    font-size: 12px;
+    background-color: #E4EBFA;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    padding: 15px;
+  }
+  
+  .subtasks {
+    font-size: 11px;
+    margin-top: 10px;
+
+  }
+
+  .Todo p, .Doing p, .Done p {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-left: 10px;
+  }
+
+  .board ul {
+      padding: 0 5px;
+  }
+
+  .board li {
+      background-color: white;
+      margin: 10px 0;
+      border-radius: 5px;
+      padding: 10px;
+  }
+
+
+  .card {
+    /* Add shadows to create the "card" effect */
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+  }
+  
+  /* On mouse-over, add a deeper shadow */
+  .card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  }
+  
+  /* Add some padding inside the card container */
+  .container {
+    padding: 2px 16px;
+  }
+
+
+
+  @media (min-width: 320px) and (max-width: 420px)  {
+      .tasks-container {
+        font-size: 12px;
+        display: flex;
+        flex-direction: column;
+        padding: 15px;
+        height: min-content;
+      }
+}
+
+@media (min-width: 420px) and (max-width: 768px) {
+
+    .tasks-container {
+        font-size: 12px;
+        display: flex;
+        flex-direction: column;
+        padding: 15px;
+        height: min-content;
+      }
+
+  }

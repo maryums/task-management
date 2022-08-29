@@ -20,11 +20,7 @@ const App = () => {
 
         <Route path="/" element={<Home />} >
           <Route path=":boardIndex" element={<Board />} />
-
         </Route>
-
-
-
       </Routes>
 
     </div>

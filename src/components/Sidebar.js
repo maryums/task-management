@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import useData from '../DataContext'
 import { nanoid } from 'nanoid'
 import AddNewBoard from './NewBoardModal'
+import '../styles/sidebar.css'
+import boardSVG from '../assets/icon-board.svg'
 
 const Sidebar = () => {
     const { boards } = useData()
@@ -20,9 +22,7 @@ const Sidebar = () => {
                     to={`/${boardIndex}`}
                     key={nanoid()}
                 >
-
-                    {board.name}
-
+                    <img className="boardsvg" src={boardSVG} /> <span>{board.name}</span>
                 </Link>
 
             </li>
@@ -35,11 +35,14 @@ const Sidebar = () => {
 
     return (
 
-        <div>
+        <div className='sidebar'>
+            <h2>kanban </h2>
             <h3>All Boards ( {boardz.length} ) </h3>
             <ul>
                 {boardNames}
-                <li onClick={() => setShowModal(prevState => !prevState)}>Create New Board</li>
+                <li onClick={() => setShowModal(prevState => !prevState)}>
+                    <img className="boardsvg" src={boardSVG} /> <span className='createnewboard'> + Create New Board</span>
+                </li>
             </ul>
 
             {showModal && <AddNewBoard

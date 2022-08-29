@@ -1,0 +1,37 @@
+.add-new-board-form {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .add-new-board-form input, textarea, select {
+    border-radius: 5px;
+    padding: 7px;
+    border: 1px solid grey;
+  }
+
+  .add-new-board-form input:focus, textarea:focus {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    outline: 4px solid transparent;
+  }
+
+  .add-new-board-form label {
+    margin: 10px 0;
+  }
+  
+  .add-new-board-form * {
+    margin: 3px 0;
+  }
+
+  .add-new-board-form button {
+    padding: 9px;
+    border-radius: 10px;
+    color:#635FC7;
+    font-weight: 700;
+    margin-top: 10px;
+  }
+
+  .create-board-btn button {
+    background:#635FC7;
+    color: white;
+  }

@@ -1,5 +1,6 @@
 import react, { useState, useContext } from 'react'
 import useData from '../DataContext'
+import '../styles/addnewtask.css'
 
 export const AddNewTask = ({ setShowAddNewTask, boardIndex }) => {
 
@@ -10,11 +11,9 @@ export const AddNewTask = ({ setShowAddNewTask, boardIndex }) => {
             title: "",
             description: "",
             status: "",
-            subtasks: []
+            eachsubtask: "",
         }
     )
-
-
 
     const handleChange = (event) => {
         const { name, value, type, checked } = event.target
@@ -44,7 +43,7 @@ export const AddNewTask = ({ setShowAddNewTask, boardIndex }) => {
             title: "",
             description: "",
             status: "",
-            subtasks: []
+            eachsubtask: "",
         })
         setShowAddNewTask(prevState => !prevState)
 
@@ -63,12 +62,12 @@ export const AddNewTask = ({ setShowAddNewTask, boardIndex }) => {
                     &times;
                 </span>
 
-                <div className='add-ask-form'>
-                    <h1>AddNewTask</h1>
+                <div className='add-new-board-form'>
+                    <h1>Add A New Board</h1>
 
                     <label htmlFor='title'> Title</label>
                     <input
-                        type="title"
+                        type="text"
                         id="title"
                         value={formData.title}
                         name="title"
@@ -80,7 +79,7 @@ export const AddNewTask = ({ setShowAddNewTask, boardIndex }) => {
 
                     <textarea
                         rows="4"
-                        cols="50"
+                        cols="30"
                         id="description"
                         name="description"
                         value={formData.description}
@@ -88,8 +87,17 @@ export const AddNewTask = ({ setShowAddNewTask, boardIndex }) => {
                         onChange={handleChange}
                     />
 
-                    <label htmlFor='subtasks'>Subtasks</label>
-                    <button>Add New Subtask</button>
+                    <label htmlFor='eachsubtask'>Subtasks</label>
+                    <input
+                        type="text"
+                        id="eachsubtask"
+                        value={formData.eachsubtask}
+                        name="eachsubtask"
+                        placeholder="e.g. Drink coffee & smile"
+                        onChange={handleChange}
+                    />
+                    <button
+                    >+ Add New Subtask</button>
 
                     <label htmlFor='status'>Status </label>
                     <select
@@ -105,8 +113,9 @@ export const AddNewTask = ({ setShowAddNewTask, boardIndex }) => {
                     </select>
 
                     <button
+                        className='create-board-btn'
                         onClick={handleSubmit}>
-                        Create Task
+                        + Create Task
                     </button>
                 </div>
 

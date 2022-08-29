@@ -5,6 +5,7 @@ import { useLocation } from "react-router-dom"
 import { nanoid } from 'nanoid'
 import EachTask from './EachTask'
 import { AddNewTask } from './AddNewTask'
+import '../styles/board.css'
 
 const Board = () => {
 
@@ -26,7 +27,6 @@ const Board = () => {
         setShowEachTask(prevState => !prevState)
     }
 
-
     const renderBoard = (currentBoard.columns).map(item => {
 
         return <div
@@ -41,14 +41,15 @@ const Board = () => {
 
                         return (
                             <li
+                                className='card'
                                 onClick={() => launchModel(task)}
                                 key={nanoid()}
                             >
                                 {task.title} <br />
-                                <p className='subtasks'>
+                                <div className='subtasks'>
                                     {(task.subtasks).filter(each => each.isCompleted).length}
                                     {''} of {''}
-                                    {(task.subtasks).length} subtasks completed</p>
+                                    {(task.subtasks).length} subtasks completed</div>
                             </li>
                         )
                     }
@@ -63,12 +64,13 @@ const Board = () => {
 
 
     return (
-        <>
-            <h3>{currentBoard.name} </h3>
-
-            <button
-                onClick={() => setShowAddNewTask(prevState => !prevState)}
-            >Add a New Task</button>
+        <div className="board">
+            <div className='board-top'>
+                <h3>{currentBoard.name} </h3>
+                <button
+                    onClick={() => setShowAddNewTask(prevState => !prevState)}
+                >Add a New Task</button>
+            </div>
 
             <div className="tasks-container">{renderBoard}</div>
 
@@ -85,7 +87,7 @@ const Board = () => {
                     task={currTask}
                 />}
 
-        </>
+        </div>
 
 
 
