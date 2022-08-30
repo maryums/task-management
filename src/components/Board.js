@@ -18,6 +18,7 @@ const Board = () => {
     let { boardIndex } = useParams();
 
     let boardz = boards.newData
+    let taskIndex;
 
 
     let currentBoard = (boardz[boardIndex])
@@ -28,6 +29,10 @@ const Board = () => {
     }
 
     const renderBoard = (currentBoard.columns).map(item => {
+
+        let boardArr = currentBoard.columns
+
+        taskIndex = boardArr.indexOf(item)
 
         return <div
             key={nanoid()}
@@ -78,6 +83,8 @@ const Board = () => {
                 <EachTask
                     setShowEachTask={setShowEachTask}
                     task={currTask}
+                    boardIndex={boardIndex}
+                    taskIndex={taskIndex}
                 />}
 
             {showAddNewTask &&

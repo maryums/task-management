@@ -11,7 +11,7 @@ export const AddNewTask = ({ setShowAddNewTask, boardIndex }) => {
             title: "",
             description: "",
             status: "",
-            eachsubtask: "",
+            subtasks: []
         }
     )
 
@@ -37,6 +37,7 @@ export const AddNewTask = ({ setShowAddNewTask, boardIndex }) => {
         else {
             statusIndex = 2
         }
+
         saveFormData(formData, boardIndex, statusIndex)
 
         setFormData({

@@ -10,9 +10,11 @@ export const DataProvider = ({ children }) => {
 
     function saveFormData(newData, boardIndex, statusIndex) {
         let data = (state.newData)
+
         const nextState = produce(data, draftState => {
             draftState[boardIndex].columns[statusIndex].tasks.push(newData)
         })
+
         dispatch({
             type: 'SAVE_DATA',
             payload: nextState
@@ -20,9 +22,26 @@ export const DataProvider = ({ children }) => {
         });
     }
 
+    function editFormData(editedData, boardIndex, statusIndex, taskIndex) {
+        let data = (state.newData)
+
+        const nextState = produce(data, draftState => {
+            draftState[boardIndex].columns[statusIndex].tasks[taskIndex] = editedData
+        })
+
+        dispatch({
+            type: 'EDIT_DATA',
+            payload: nextState
+
+        });
+
+    }
+
+
     const value = {
         boards: state,
-        saveFormData
+        saveFormData,
+        editFormData
     }
 
     return (

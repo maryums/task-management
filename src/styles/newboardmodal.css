@@ -28,9 +28,6 @@
     cursor: pointer;
   }
   
-  .popup_info {
-  text-align: center;
-  }
 
 
   @media (min-width: 320px) and (max-width: 420px)  {
@@ -38,7 +35,7 @@
     width: 90%;
   }
 }
-@media (min-width: 420px) and (max-width: 768px) {
+@media (min-width: 420px) and (max-width: 769px) {
   .modal_content {
     width: 80%;
   }

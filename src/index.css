@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap');
 
 html,
 body,
@@ -154,7 +154,7 @@ table {
 }
 
 
-@media (min-width: 320px) and (max-width: 420px)  {
+@media (min-width: 320px) and (max-width: 769px)  {
     .Home {
       display: flex;
       flex-direction: column;

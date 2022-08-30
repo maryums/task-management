@@ -1,0 +1,49 @@
+.each-task-modal .modal_content {
+    display: flex;
+    flex-direction: column;
+}
+
+.each-task-modal .close {
+   align-self: flex-end;
+}
+
+.each-task-info h2 {
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.each-task-info .description {
+    margin-top: 10px;
+    font-size: 13px;
+    color: grey;
+    line-height: 1.8;
+}
+
+.each-task-info .subtasks, .task-status {
+    margin-top: 10px;
+    font-size: 11px;
+    color: grey;
+} 
+
+.each-task-info ul {
+    font-size: 11px;
+    color: grey;
+}
+
+.each-task-info ul li {
+    background-color: #E4EBFA;
+    padding: 6px
+}
+
+
+.each-task-info .strikethrough {
+    font-size: 11px;
+    text-decoration:line-through;
+}
+
+.each-task-info select {
+    margin-top: 5px;
+    width: 100%;
+    font-family: Roboto;
+    font-size: 11px;
+}
