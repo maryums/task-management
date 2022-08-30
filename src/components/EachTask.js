@@ -7,6 +7,8 @@ import produce from 'immer'
 
 const EachTask = ({ task, setShowEachTask, boardIndex, taskIndex }) => {
 
+    let originalStatus = task.status
+
     const { editFormData } = useData()
 
 
@@ -17,19 +19,47 @@ const EachTask = ({ task, setShowEachTask, boardIndex, taskIndex }) => {
         status: task.status
     })
 
-    const handleSubTasks = (event, index, taskBoolean) => {
+    const handleSubTasks = (event, index) => {
         const nextState = produce(task, draftState => {
             draftState.subtasks[index].isCompleted = !draftState.subtasks[index].isCompleted
         })
+        let changingStatus = false
+        let statusIndex;
+
+        if (nextState.status === "Todo") {
+            statusIndex = 0
+        }
+        else if (nextState.status === "Doing") {
+            statusIndex = 1
+        }
+        else {
+            statusIndex = 2
+        }
+
+        editFormData(nextState, boardIndex, statusIndex, taskIndex, changingStatus)
     }
 
-    const handleEdit = (event) => {
+    const handleEdit = (event, taskStatus) => {
+
         const { name, value, type, checked } = event.target
 
         const nextState = produce(task, draftState => {
             draftState[name] = value
         })
 
+        let originalStatusIndex;
+
+        if (originalStatus === "Todo") {
+            originalStatusIndex = 0
+        }
+        else if (originalStatus === "Doing") {
+            originalStatusIndex = 1
+        }
+        else {
+            originalStatusIndex = 2
+        }
+
+        let changingStatus = true
         let statusIndex;
         if (nextState.status === "Todo") {
             statusIndex = 0
@@ -41,9 +71,9 @@ const EachTask = ({ task, setShowEachTask, boardIndex, taskIndex }) => {
             statusIndex = 2
         }
 
+        console.log(originalStatusIndex)
 
-
-        editFormData(nextState, boardIndex, statusIndex, taskIndex)
+        editFormData(nextState, boardIndex, statusIndex, originalStatusIndex, taskIndex, changingStatus)
     }
 
     return (
@@ -71,13 +101,12 @@ const EachTask = ({ task, setShowEachTask, boardIndex, taskIndex }) => {
                             {(task.subtasks).map(subtask => {
                                 let subTaskArr = task.subtasks
                                 let index = subTaskArr.indexOf(subtask)
-                                let taskBoolean = subtask.isCompleted
                                 return (
                                     <li key={nanoid()}
                                         className={subtask.isCompleted ? "strikethrough" : ""}
                                     >
                                         <input
-                                            onChange={(e) => handleSubTasks(e, index, taskBoolean)}
+                                            onChange={(e) => handleSubTasks(e, index)}
                                             type="checkbox"
                                             defaultChecked={subtask.isCompleted}
                                             id={subtask.title}
@@ -100,7 +129,7 @@ const EachTask = ({ task, setShowEachTask, boardIndex, taskIndex }) => {
                         <select
                             id="status"
                             name="status"
-                            onChange={handleEdit}
+                            onChange={(e) => handleEdit(e, task.status)}
                         >
                             <option value="Todo"> Todo</option>
                             <option value="Doing"> Doing</option>

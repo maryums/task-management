@@ -12,18 +12,20 @@ const Board = () => {
     const [showEachTask, setShowEachTask] = useState(false)
     const [showAddNewTask, setShowAddNewTask] = useState(false)
     const [currTask, setCurrTask] = useState(null)
+    const [taskIndex, setTaskIndex] = useState(null)
 
     const { boards } = useData()
 
     let { boardIndex } = useParams();
 
     let boardz = boards.newData
-    let taskIndex;
+
 
 
     let currentBoard = (boardz[boardIndex])
 
-    const launchModel = (task) => {
+    const launchModel = (task, taskIndex) => {
+        setTaskIndex(taskIndex)
         setCurrTask(task)
         setShowEachTask(prevState => !prevState)
     }
@@ -32,7 +34,8 @@ const Board = () => {
 
         let boardArr = currentBoard.columns
 
-        taskIndex = boardArr.indexOf(item)
+
+
 
         return <div
             key={nanoid()}
@@ -44,10 +47,14 @@ const Board = () => {
                 <ul>
                     {(item.tasks).map(task => {
 
+                        let taskArr = item.tasks
+                        let taskIndex = taskArr.indexOf(task)
+
                         return (
+
                             <li
                                 className='card'
-                                onClick={() => launchModel(task)}
+                                onClick={() => launchModel(task, taskIndex)}
                                 key={nanoid()}
                             >
                                 {task.title} <br />
@@ -57,6 +64,7 @@ const Board = () => {
                                     {(task.subtasks).length} subtasks completed</div>
                             </li>
                         )
+
                     }
 
 

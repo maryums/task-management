@@ -22,12 +22,22 @@ export const DataProvider = ({ children }) => {
         });
     }
 
-    function editFormData(editedData, boardIndex, statusIndex, taskIndex) {
+    function editFormData(editedData, boardIndex, statusIndex, originalStatusIndex, taskIndex, changingStatus) {
         let data = (state.newData)
+        let nextState;
 
-        const nextState = produce(data, draftState => {
-            draftState[boardIndex].columns[statusIndex].tasks[taskIndex] = editedData
-        })
+        if (changingStatus) {
+            nextState = produce(data, draftState => {
+                draftState[boardIndex].columns[statusIndex].tasks.push(editedData)
+                draftState[boardIndex].columns[originalStatusIndex].tasks.splice(taskIndex, 1)
+            })
+
+
+        } else {
+            nextState = produce(data, draftState => {
+                draftState[boardIndex].columns[statusIndex].tasks[taskIndex] = editedData
+            })
+        }
 
         dispatch({
             type: 'EDIT_DATA',
